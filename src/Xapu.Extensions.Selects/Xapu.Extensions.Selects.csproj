@@ -1,0 +1,18 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net5.0</TargetFramework>
+	</PropertyGroup>
+
+	<PropertyGroup>
+		<RepositoryType>git</RepositoryType>
+		<RepositoryUrl>https://github.com/valtermro/Xapu.Extensions.Selects</RepositoryUrl>
+	</PropertyGroup>
+
+	<PropertyGroup>
+		<Description>Map objects of type T to objects of type U where U is expected to be a subset of T.</Description>
+		<PackageProjectUrl>https://github.com/valtermro/Xapu.Extensions.Select</PackageProjectUrl>
+		<PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
+	</PropertyGroup>
+
+</Project>
