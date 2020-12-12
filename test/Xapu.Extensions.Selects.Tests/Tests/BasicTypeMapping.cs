@@ -8,7 +8,7 @@ namespace Xapu.Extensions.Selects.Tests
     public class BasicTypeMapping
     {
         [Fact]
-        public void SameTypeMapping()
+        public void SameType()
         {
             var source = new BasicTypes
             {

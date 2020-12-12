@@ -8,7 +8,7 @@ namespace Xapu.Extensions.Selects.Tests
     public class ObjectTypeMapping
     {
         [Fact]
-        public void ShallowObjectMapping()
+        public void ShallowObject()
         {
             var source = new ObjectType
             {
@@ -32,7 +32,7 @@ namespace Xapu.Extensions.Selects.Tests
         }
 
         [Fact]
-        public void NestedObjectMapping()
+        public void NestedObject()
         {
             var source = new ObjectType
             {
