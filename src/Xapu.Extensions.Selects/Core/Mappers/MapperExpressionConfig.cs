@@ -1,6 +1,6 @@
-﻿namespace Xapu.Extensions.Selects.Core
+﻿namespace Xapu.Extensions.Selects.Core.Mappers
 {
-    internal class MapperExpressionConfig
+    public class MapperExpressionConfig
     {
         public bool GuardNull { get; }
 

@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Concurrent;
-using Xapu.Extensions.Selects.Core;
+using System.Linq.Expressions;
 
-namespace Xapu.Extensions.Selects.Mappers
+namespace Xapu.Extensions.Selects.Core.Mappers
 {
     internal static class MapperFuncBag
     {
@@ -22,8 +22,11 @@ namespace Xapu.Extensions.Selects.Mappers
         private static Func<TSource, TResult> Create<TSource, TResult>()
         {
             var config = new MapperExpressionConfig(guardNull: true);
-            var expression = MapperExpressionBuilder.Build<TSource, TResult>(config);
-            return expression.Compile();
+            var builder = new MapperExpressionBuilder(config);
+            var expression = builder.CreateExpression(typeof(TSource), typeof(TResult));
+
+            var lambda = (Expression<Func<TSource, TResult>>)expression;
+            return lambda.Compile();
         }
     }
 }

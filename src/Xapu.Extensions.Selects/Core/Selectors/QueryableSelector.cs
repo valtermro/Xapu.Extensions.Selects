@@ -1,14 +1,14 @@
 ﻿using System.Linq;
-using Xapu.Extensions.Selects.Mappers;
+using Xapu.Extensions.Selects.Core.Mappers;
 
-namespace Xapu.Extensions.Selects.Proxies
+namespace Xapu.Extensions.Selects.Core.Selectors
 {
-    internal interface IQueryableSelectProxy
+    internal interface IQueryableSelector
     {
         IQueryable<TResult> Select<TResult>(IQueryable<object> source);
     }
 
-    internal class QueryableSelectProxy<TSource> : IQueryableSelectProxy
+    internal class QueryableSelector<TSource> : IQueryableSelector
     {
         public IQueryable<TResult> Select<TResult>(IQueryable<object> source)
         {

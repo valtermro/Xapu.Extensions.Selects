@@ -1,14 +1,15 @@
 ﻿using System;
 using System.Collections.Concurrent;
-using Xapu.Extensions.Selects.Core;
+using Xapu.Extensions.Selects.Core.Base;
+using Xapu.Extensions.Selects.Core.Selectors;
 
-namespace Xapu.Extensions.Selects.Proxies
+namespace Xapu.Extensions.Selects.Core
 {
     internal static class EnumerableSelectProxyBag
     {
-        private static readonly ConcurrentDictionary<Type, IEnumerableSelectProxy> Instances = new ConcurrentDictionary<Type, IEnumerableSelectProxy>();
+        private static readonly ConcurrentDictionary<Type, IEnumerableSelector> Instances = new ConcurrentDictionary<Type, IEnumerableSelector>();
         
-        public static IEnumerableSelectProxy GetForType(Type type)
+        public static IEnumerableSelector GetForType(Type type)
         {
             if (!Instances.ContainsKey(type))
                 Instances[type] = CreateForType(type);
@@ -16,15 +17,15 @@ namespace Xapu.Extensions.Selects.Proxies
             return Instances[type];
         }
 
-        private static IEnumerableSelectProxy CreateForType(Type sourceType)
+        private static IEnumerableSelector CreateForType(Type sourceType)
         {
-            var proxyType = typeof(EnumerableSelectProxy<>);
+            var proxyType = typeof(EnumerableSelector<>);
             var elementType = sourceType.GetCollectionElementType();
 
             var instanceType = proxyType.MakeGenericType(elementType);
             var instance =  Activator.CreateInstance(instanceType);
 
-            return (IEnumerableSelectProxy)instance;
+            return (IEnumerableSelector)instance;
         }
     }
 }

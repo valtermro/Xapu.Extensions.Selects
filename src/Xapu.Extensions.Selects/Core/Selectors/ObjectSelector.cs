@@ -1,13 +1,13 @@
-﻿using Xapu.Extensions.Selects.Mappers;
+﻿using Xapu.Extensions.Selects.Core.Mappers;
 
-namespace Xapu.Extensions.Selects.Proxies
+namespace Xapu.Extensions.Selects.Core.Selectors
 {
-    internal interface IObjectSelectProxy
+    internal interface IObjectSelector
     {
         TResult Select<TResult>(object source);
     }
 
-    internal class ObjectSelectProxy<TSource> : IObjectSelectProxy
+    internal class ObjectSelector<TSource> : IObjectSelector
     {
         public TResult Select<TResult>(object source)
         {

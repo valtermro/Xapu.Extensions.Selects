@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Xapu.Extensions.Selects.Proxies;
+using Xapu.Extensions.Selects.Core;
 
 namespace Xapu.Extensions.Selects
 {

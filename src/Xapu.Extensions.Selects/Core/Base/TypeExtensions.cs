@@ -5,7 +5,7 @@ using System.Linq;
 using System.Reflection;
 using Xapu.Extensions.Selects.Exceptions;
 
-namespace Xapu.Extensions.Selects.Core
+namespace Xapu.Extensions.Selects.Core.Base
 {
     internal static class TypeExtensions
     {
