@@ -20,7 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Xapu.Extensions.Selects\Xapu.Extensions.Selects.csproj" />
+    <ProjectReference Include="..\Xapu.Extensions.Selects\Xapu.Extensions.Selects.csproj" />
   </ItemGroup>
 
 </Project>
