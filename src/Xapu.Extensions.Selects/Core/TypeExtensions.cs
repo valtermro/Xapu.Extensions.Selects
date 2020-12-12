@@ -47,6 +47,11 @@ namespace Xapu.Extensions.Selects.Core
             return type.GetProperties().Where(p => p.SetMethod != null && p.SetMethod.IsPublic);
         }
 
+        public static Type GetNullableElementType(this Type type)
+        {
+            return type.GetGenericArguments().First();
+        }
+
         public static Type GetCollectionElementType(this Type type)
         {
             if (type.IsArray)
