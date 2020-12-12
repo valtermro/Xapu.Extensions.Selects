@@ -7,8 +7,8 @@ namespace Xapu.Extensions.Selects.Core
     {
         public static Expression<Func<TSource, TResult>> Build<TSource, TResult>()
         {
-            var builderCtx = new DefaultMapperExpressionBuilderContext();
-            var lambda = builderCtx.CreateMapperExpression(typeof(TSource), typeof(TResult));
+            var ctx = new DefaultMapperExpressionBuilderContext();
+            var lambda = ctx.CreateExpression(typeof(TSource), typeof(TResult));
 
             return (Expression<Func<TSource, TResult>>)lambda;
         }

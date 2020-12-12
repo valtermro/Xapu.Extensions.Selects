@@ -5,6 +5,7 @@ namespace Xapu.Extensions.Selects.Core
 {
     internal interface IMapperExpressionBuilderContext
     {
-        LambdaExpression CreateMapperExpression(Type sourceType, Type resultType);
+        Expression CreateExpression(Type sourceType, Type resultType);
+        Expression CreateExpression(Expression sourceLocalName, Type sourceType, Type resultType);
     }
 }

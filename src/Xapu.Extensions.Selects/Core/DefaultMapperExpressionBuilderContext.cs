@@ -19,27 +19,28 @@ namespace Xapu.Extensions.Selects.Core
             _collectionMapperExpressionBuilder = new CollectionMapperExpressionBuilder(this);
         }
 
-        public LambdaExpression CreateMapperExpression(Type sourceType, Type resultType)
+        public Expression CreateExpression(Type sourceType, Type resultType)
         {
             var param = Expression.Parameter(sourceType);
-            var body = ResolveMapperExpression(param, sourceType, resultType);
-
-            return Expression.Lambda(body, param);
+            var body = CreateExpression(param, sourceType, resultType);
+            
+            var lambda = Expression.Lambda(body, param);
+            return lambda;
         }
 
-        private Expression ResolveMapperExpression(Expression param, Type sourceType, Type resultType)
+        public Expression CreateExpression(Expression sourceLocalName, Type sourceType, Type resultType)
         {
             if (sourceType.IsNullable() || resultType.IsNullable())
-                return _nullableMapperExpressionBuilder.Build(param, sourceType, resultType);
+                return _nullableMapperExpressionBuilder.Build(sourceLocalName, sourceType, resultType);
 
             if (sourceType.IsBasicType() && resultType.IsBasicType())
-                return _basicTypeMapperExpressionBuilder.Build(param, sourceType, resultType);
+                return _basicTypeMapperExpressionBuilder.Build(sourceLocalName, sourceType, resultType);
 
             if (sourceType.IsObjectType() && resultType.IsObjectType())
-                return _objectMapperExpressionBuilder.Build(param, sourceType, resultType);
+                return _objectMapperExpressionBuilder.Build(sourceLocalName, sourceType, resultType);
 
             if (sourceType.IsCollectionType() && resultType.IsCollectionType())
-                return _collectionMapperExpressionBuilder.Build(param, sourceType, resultType);
+                return _collectionMapperExpressionBuilder.Build(sourceLocalName, sourceType, resultType);
 
             throw new InvalidTypeMappingException(sourceType, resultType);
         }

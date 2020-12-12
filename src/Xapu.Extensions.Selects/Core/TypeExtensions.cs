@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using Xapu.Extensions.Selects.Exceptions;
 
 namespace Xapu.Extensions.Selects.Core
@@ -33,6 +35,16 @@ namespace Xapu.Extensions.Selects.Core
             return type.IsGenericType &&
                    type.GetGenericTypeDefinition() == typeof(Nullable<>) &&
                    !type.IsGenericTypeDefinition;
+        }
+
+        public static IEnumerable<PropertyInfo> GetReadableProperties(this Type type)
+        {
+            return type.GetProperties().Where(p => p.GetMethod != null && p.GetMethod.IsPublic);
+        }
+
+        public static IEnumerable<PropertyInfo> GetWritableProperties(this Type type)
+        {
+            return type.GetProperties().Where(p => p.SetMethod != null && p.SetMethod.IsPublic);
         }
 
         public static Type GetCollectionElementType(this Type type)

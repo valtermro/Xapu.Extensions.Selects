@@ -5,7 +5,7 @@ namespace Xapu.Extensions.Selects.Core
 {
     internal class NullableMapperExpressionBuilder : ITypeMapperExpressionBuilder
     {
-        private IMapperExpressionBuilderContext _ctx;
+        private readonly IMapperExpressionBuilderContext _ctx;
 
         public NullableMapperExpressionBuilder(IMapperExpressionBuilderContext ctx)
         {

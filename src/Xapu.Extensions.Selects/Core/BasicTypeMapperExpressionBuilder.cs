@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Linq.Expressions;
+using Xapu.Extensions.Selects.Exceptions;
 
 namespace Xapu.Extensions.Selects.Core
 {
     internal class BasicTypeMapperExpressionBuilder : ITypeMapperExpressionBuilder
     {
-        private IMapperExpressionBuilderContext _ctx;
+        private readonly IMapperExpressionBuilderContext _ctx;
 
         public BasicTypeMapperExpressionBuilder(IMapperExpressionBuilderContext ctx)
         {
@@ -14,7 +15,10 @@ namespace Xapu.Extensions.Selects.Core
 
         public Expression Build(Expression sourceLocalName, Type sourceType, Type resultType)
         {
-            throw new NotImplementedException();
+            if (sourceType == resultType)
+                return sourceLocalName;
+
+            throw new InvalidTypeMappingException(sourceType, resultType);
         }
     }
 }

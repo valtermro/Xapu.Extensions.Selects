@@ -5,10 +5,10 @@ using Xunit;
 
 namespace Xapu.Extensions.Selects.Tests
 {
-    public class TypeMapping
+    public class BasicTypeMapping
     {
         [Fact]
-        public void BasicTypeMapping()
+        public void SameTypeMapping()
         {
             var source = new BasicTypes
             {
