@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Linq;
+using Xapu.Extensions.Selects.Tests.FixtureTypes;
 using Xunit;
 
 namespace Xapu.Extensions.Selects.Tests.Base
@@ -18,6 +20,11 @@ namespace Xapu.Extensions.Selects.Tests.Base
             var ex = Record.Exception(() => result = func());
             Assert.True(ex == null, $"Unexpected {ex?.GetType()}");
             return result;
+        }
+
+        internal static void AssignableFrom(object subject, Type type)
+        {
+            Assert.True(type.IsAssignableFrom(subject.GetType()));
         }
     }
 }
