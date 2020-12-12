@@ -21,7 +21,8 @@ namespace Xapu.Extensions.Selects.Mappers
 
         private static Func<TSource, TResult> Create<TSource, TResult>()
         {
-            var expression = MapperExpressionBuilder.Build<TSource, TResult>();
+            var config = new MapperExpressionConfig(guardNull: true);
+            var expression = MapperExpressionBuilder.Build<TSource, TResult>(config);
             return expression.Compile();
         }
     }

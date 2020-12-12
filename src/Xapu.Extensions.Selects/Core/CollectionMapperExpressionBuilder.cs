@@ -29,7 +29,8 @@ namespace Xapu.Extensions.Selects.Core
             var selectCallExpression = Expression.Call(selectMethod, sourceLocalName, selectorExpression);
 
             var newCollectionExpression = ResolveCollectionCasting(selectCallExpression, resultType, resultElementType);
-            return newCollectionExpression;
+            var guardedExpression = _ctx.ResolveNullGuard(sourceLocalName, newCollectionExpression, sourceType, resultType);
+            return guardedExpression;
         }
 
         private static Expression ResolveCollectionCasting(MethodCallExpression expression, Type resultType, Type resultElementType)

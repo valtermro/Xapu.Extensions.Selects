@@ -6,13 +6,15 @@ namespace Xapu.Extensions.Selects.Core
 {
     internal class DefaultMapperExpressionBuilderContext : IMapperExpressionBuilderContext
     {
+        private readonly MapperExpressionConfig _config;
         private readonly ITypeMapperExpressionBuilder _nullableMapperExpressionBuilder;
         private readonly ITypeMapperExpressionBuilder _basicTypeMapperExpressionBuilder;
         private readonly ITypeMapperExpressionBuilder _objectMapperExpressionBuilder;
         private readonly ITypeMapperExpressionBuilder _collectionMapperExpressionBuilder;
 
-        public DefaultMapperExpressionBuilderContext()
+        public DefaultMapperExpressionBuilderContext(MapperExpressionConfig config)
         {
+            _config = config;
             _nullableMapperExpressionBuilder = new NullableMapperExpressionBuilder(this);
             _basicTypeMapperExpressionBuilder = new BasicTypeMapperExpressionBuilder(this);
             _objectMapperExpressionBuilder = new ObjectMapperExpressionBuilder(this);
@@ -43,6 +45,16 @@ namespace Xapu.Extensions.Selects.Core
                 return _collectionMapperExpressionBuilder.Build(sourceLocalName, sourceType, resultType);
 
             throw new InvalidTypeMappingException(sourceType, resultType);
+        }
+
+        public Expression ResolveNullGuard(Expression sourceLocalName, Expression expression, Type sourceType, Type resultType)
+        {
+            if (!_config.GuardNull)
+                return expression;
+
+            var sourceIsNullExpression = Expression.Equal(sourceLocalName, Expression.Default(sourceType));
+            var resultDefaultExpression = Expression.Default(resultType);
+            return Expression.Condition(sourceIsNullExpression, resultDefaultExpression, expression);
         }
     }
 }

@@ -95,7 +95,7 @@ namespace Xapu.Extensions.Selects.Tests
         {
             var source = new CollectionsOfObjects
             {
-                ObjectArray = new ObjectType[]
+                ObjectArray = new[]
                 {
                     new ObjectType
                     {

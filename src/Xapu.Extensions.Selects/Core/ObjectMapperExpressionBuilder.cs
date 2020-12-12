@@ -23,8 +23,9 @@ namespace Xapu.Extensions.Selects.Core
             var newExpression = Expression.New(resultType);
             var memberInitList = BuildMemberInitList(sourceLocalName, sourceProps, resultProps);
 
-            var memeberInitExpression = Expression.MemberInit(newExpression, memberInitList);
-            return memeberInitExpression;
+            var memberInitExpression = Expression.MemberInit(newExpression, memberInitList);
+            var guardedExpression = _ctx.ResolveNullGuard(sourceLocalName, memberInitExpression, sourceType, resultType);
+            return guardedExpression;
         }
 
         private IEnumerable<MemberBinding> BuildMemberInitList(Expression sourceLocalName, IEnumerable<PropertyInfo> sourceProps, IEnumerable<PropertyInfo> resultProps)

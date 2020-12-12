@@ -10,5 +10,14 @@ namespace Xapu.Extensions.Selects.Tests.Base
             Assert.IsType(expectedType, value);
             return value;
         }
+
+        public static T NotThrowing<T>(Func<T> func)
+        {
+            T result = default;
+
+            var ex = Record.Exception(() => result = func());
+            Assert.True(ex == null, $"Unexpected {ex?.GetType()}");
+            return result;
+        }
     }
 }
