@@ -54,11 +54,13 @@ namespace Xapu.Extensions.Selects.Core
 
         public static Type GetCollectionElementType(this Type type)
         {
-            if (type.IsArray)
-                return type.GetElementType();
+            if (type.GenericTypeArguments.Length == 1)
+                return type.GenericTypeArguments[0];
 
-            if (type.IsGenericType)
-                return type.GetGenericArguments().First();
+            var iface = type.GetInterface("IEnumerable`1");
+            
+            if (iface != null)
+                return iface.GenericTypeArguments[0];
 
             throw new InvalidCollectionTypeException(type);
         }
