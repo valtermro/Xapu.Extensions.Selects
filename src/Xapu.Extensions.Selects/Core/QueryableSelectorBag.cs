@@ -5,7 +5,7 @@ using Xapu.Extensions.Selects.Core.Selectors;
 
 namespace Xapu.Extensions.Selects.Core
 {
-    internal static class QueryableSelectProxyBag
+    internal static class QueryableSelectorBag
     {
         private static readonly ConcurrentDictionary<Type, IQueryableSelector> Instances = new ConcurrentDictionary<Type, IQueryableSelector>();
 
@@ -19,10 +19,10 @@ namespace Xapu.Extensions.Selects.Core
 
         private static IQueryableSelector CreateForType(Type sourceType)
         {
-            var proxyType = typeof(QueryableSelector<>);
+            var selectorType = typeof(QueryableSelector<>);
             var elementType = sourceType.GetCollectionElementType();
 
-            var instanceType = proxyType.MakeGenericType(elementType);
+            var instanceType = selectorType.MakeGenericType(elementType);
             var instance = Activator.CreateInstance(instanceType);
 
             return (IQueryableSelector)instance;

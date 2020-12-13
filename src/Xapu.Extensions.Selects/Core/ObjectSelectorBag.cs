@@ -4,7 +4,7 @@ using Xapu.Extensions.Selects.Core.Selectors;
 
 namespace Xapu.Extensions.Selects.Core
 {
-    internal static class ObjectSelectProxyBag
+    internal static class ObjectSelectorBag
     {
         private static readonly ConcurrentDictionary<Type, IObjectSelector> Instances = new ConcurrentDictionary<Type, IObjectSelector>();
 
@@ -18,9 +18,9 @@ namespace Xapu.Extensions.Selects.Core
 
         private static IObjectSelector CreateForType(Type sourceType)
         {
-            var proxyType = typeof(ObjectSelector<>);
+            var selectorType = typeof(ObjectSelector<>);
 
-            var instanceType = proxyType.MakeGenericType(sourceType);
+            var instanceType = selectorType.MakeGenericType(sourceType);
             var instance = Activator.CreateInstance(instanceType);
 
             return (IObjectSelector)instance;

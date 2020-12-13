@@ -5,7 +5,7 @@ using Xapu.Extensions.Selects.Core.Selectors;
 
 namespace Xapu.Extensions.Selects.Core
 {
-    internal static class EnumerableSelectProxyBag
+    internal static class EnumerableSelectorBag
     {
         private static readonly ConcurrentDictionary<Type, IEnumerableSelector> Instances = new ConcurrentDictionary<Type, IEnumerableSelector>();
         
@@ -19,10 +19,10 @@ namespace Xapu.Extensions.Selects.Core
 
         private static IEnumerableSelector CreateForType(Type sourceType)
         {
-            var proxyType = typeof(EnumerableSelector<>);
+            var selectorType = typeof(EnumerableSelector<>);
             var elementType = sourceType.GetCollectionElementType();
 
-            var instanceType = proxyType.MakeGenericType(elementType);
+            var instanceType = selectorType.MakeGenericType(elementType);
             var instance =  Activator.CreateInstance(instanceType);
 
             return (IEnumerableSelector)instance;
