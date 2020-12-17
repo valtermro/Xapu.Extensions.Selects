@@ -11,7 +11,7 @@
 
 	<PropertyGroup>
 		<Description>Map objects of type T to objects of type U where U is expected to be a subset of T.</Description>
-		<PackageProjectUrl>https://github.com/valtermro/Xapu.Extensions.Select</PackageProjectUrl>
+		<PackageProjectUrl>https://github.com/valtermro/Xapu.Extensions.Selects</PackageProjectUrl>
 		<PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
 	</PropertyGroup>
 
