@@ -26,5 +26,4 @@ jobs:
         path: pack/
 
     - name: Publish to nuget
-      if: ${{ contains(github.event.release.tag_name, '-alpha') }}
       run: dotnet nuget push pack/**/*.nupkg --api-key ${{ secrets.NUGET }} --source https://api.nuget.org/v3/index.json
