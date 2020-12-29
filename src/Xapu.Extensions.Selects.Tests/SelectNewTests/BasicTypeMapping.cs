@@ -1,19 +1,23 @@
 ﻿using System;
 using System.Linq;
+using Xapu.Extensions.Selects.Tests.Base;
 using Xapu.Extensions.Selects.Tests.FixtureTypes;
 using Xunit;
 
-namespace Xapu.Extensions.Selects.Tests
+namespace Xapu.Extensions.Selects.Tests.SelectNewTests
 {
     public class BasicTypeMapping
     {
+        private static readonly Guid Guid = Guid.NewGuid();
+        private static readonly DateTime DateTime = DateTime.Now;
+
         [Fact]
         public void SameType()
         {
-            var source = new BasicTypes
+            var create = Creator.New(() => new BasicTypes
             {
-                Guid = Guid.NewGuid(),
-                DateTime = DateTime.Now,
+                Guid = Guid,
+                DateTime = DateTime,
                 Enum = StubEnum.Two,
                 Bool = true,
                 Char = 'C',
@@ -30,17 +34,12 @@ namespace Xapu.Extensions.Selects.Tests
                 Uint = 10,
                 Ulong = 11,
                 Ushort = 12
-            };
+            });
 
-            RunAssertions(source.ToNew<BasicTypesView>());
-            RunAssertions(new[] { source }.SelectNew<BasicTypesView>().First());
-            RunAssertions(new[] { source }.AsQueryable().SelectNew<BasicTypesView>().First());
-
-            void RunAssertions(BasicTypesView result)
+            static void Assertions(BasicTypesView result)
             {
-                Assert.Equal(source.Guid, result.Guid);
-                Assert.Equal(source.Guid, result.Guid);
-                Assert.Equal(source.DateTime, result.DateTime);
+                Assert.Equal(Guid, result.Guid);
+                Assert.Equal(DateTime, result.DateTime);
                 Assert.Equal(StubEnum.Two, result.Enum);
                 Assert.True(result.Bool);
                 Assert.Equal('C', result.Char);
@@ -58,6 +57,10 @@ namespace Xapu.Extensions.Selects.Tests
                 Assert.Equal(11ul, result.Ulong);
                 Assert.Equal(12, result.Ushort);
             };
+
+            Assertions(create.Object().ToNew<BasicTypesView>());
+            Assertions(create.Array().SelectNew<BasicTypesView>().First());
+            Assertions(create.Queryable().SelectNew<BasicTypesView>().First());
         }
     }
 }

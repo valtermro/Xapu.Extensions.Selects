@@ -4,15 +4,16 @@ using Xapu.Extensions.Selects.Tests.Base;
 using Xapu.Extensions.Selects.Tests.FixtureTypes;
 using Xunit;
 
-namespace Xapu.Extensions.Selects.Tests
+namespace Xapu.Extensions.Selects.Tests.SelectNewTests
 {
     public class ResultTypes
     {
         [Fact]
         public void EnumerableSelectReturnsIEnumerable()
         {
-            var source = new BasicTypes[] { new BasicTypes() };
-            var result = source.SelectNew<BasicTypes>();
+            var array = Creator.New(() => new BasicTypes()).Array();
+            
+            var result = array.SelectNew<BasicTypes>();
 
             AssertX.AssignableFrom(result, typeof(IEnumerable<BasicTypes>));
         }
@@ -20,7 +21,8 @@ namespace Xapu.Extensions.Selects.Tests
         [Fact]
         public void QueryableSelectReturnsIQueryable()
         {
-            var query = new BasicTypes[] { new BasicTypes() }.AsQueryable();
+            var query = Creator.New(() => new BasicTypes()).Queryable();
+
             var result = query.SelectNew<BasicTypes>();
 
             AssertX.AssignableFrom(result, typeof(IQueryable<BasicTypes>));
