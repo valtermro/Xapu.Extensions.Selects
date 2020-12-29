@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Xapu.Extensions.Selects.Core.Mappers;
 
 namespace Xapu.Extensions.Selects.Core.Selectors
 {

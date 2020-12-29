@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Linq.Expressions;
 using Xapu.Extensions.Selects.Core.Base;
-using Xapu.Extensions.Selects.Core.ExpressionBuilders;
 using Xapu.Extensions.Selects.Exceptions;
 
-namespace Xapu.Extensions.Selects.Core.Mappers
+namespace Xapu.Extensions.Selects.Core.ExpressionBuilders
 {
     internal class MapperExpressionBuilder : IMapperExpressionBuilderContext
     {
