@@ -92,5 +92,37 @@ namespace Xapu.Extensions.Selects.Tests.SelectNewTests
             Assertions(create.Array().SelectNew<CollectionsOfObjectViews>().First());
             Assertions(create.Queryable().SelectNew<CollectionsOfObjectViews>().First());
         }
+
+        [Fact]
+        public void CollectionOfNullableValuesToNonNullable()
+        {
+            var create = Creator.New(() => new CollectionsOfNullableValues
+            {
+                IntArray = new int?[] { 1, 2 }
+            });
+
+            static void Assertions(dynamic result)
+            {
+                Assert.Equal(new int[] { 1, 2 }, AssertX.Type(result.IntArray, ArrayIntT));
+            }
+
+            Assertions(create.Object().ToNew<CollectionsToArrays>());
+        }
+
+        [Fact]
+        public void CollectionOfNonNullableValuesToNullable()
+        {
+            var create = Creator.New(() => new CollectionsOfBasicValues
+            {
+                IntArray = new int[] { 1, 2 }
+            });
+
+            static void Assertions(dynamic result)
+            {
+                Assert.Equal(new int?[] { 1, 2 }, AssertX.Type(result.IntArray, typeof(int?[])));
+            }
+
+            Assertions(create.Object().ToNew<CollectionsOfNullableValues>());
+        }
     }
 }

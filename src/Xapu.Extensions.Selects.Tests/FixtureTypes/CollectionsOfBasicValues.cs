@@ -11,6 +11,11 @@ namespace Xapu.Extensions.Selects.Tests.FixtureTypes
         public IEnumerable<int> IntIEnumerable { get; set; }
     }
 
+    public class CollectionsOfNullableValues
+    {
+        public int?[] IntArray { get; set; }
+    }
+
     public class CollectionsToArrays
     {
         public int[] IntArray { get; set; }
