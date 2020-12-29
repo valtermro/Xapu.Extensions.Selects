@@ -16,9 +16,6 @@ namespace Xapu.Extensions.Selects.Core.ExpressionBuilders
 
         public Expression Build(Expression sourceLocalName, Type sourceType, Type resultType)
         {
-            // We'll have a single instance of this class during the entire expression building process.
-            // We cannot have instance variables and have to pass state down as arguments.
-
             if (resultType.IsNullable())
                 return BuildToNullableExpression(sourceLocalName, sourceType, resultType);
 

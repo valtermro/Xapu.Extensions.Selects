@@ -22,9 +22,6 @@ namespace Xapu.Extensions.Selects.Core.ExpressionBuilders
 
         public Expression Build(Expression sourceLocalName, Type sourceType, Type resultType)
         {
-            // We'll have a single instance of this class during the entire expression building process.
-            // We cannot have instance variables and have to pass state down as arguments.
-
             var resultCollection = BuildResultCollectionExpression(sourceLocalName, sourceType, resultType);
             var castedCollection = ResolveCollectionCasting(resultCollection, resultType);
             

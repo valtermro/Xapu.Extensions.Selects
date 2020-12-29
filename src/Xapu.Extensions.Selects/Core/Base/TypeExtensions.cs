@@ -37,12 +37,40 @@ namespace Xapu.Extensions.Selects.Core.Base
                    !type.IsGenericTypeDefinition;
         }
 
-        public static IEnumerable<PropertyInfo> GetReadableProperties(this Type type)
+        public static IEnumerable<IMemberInfo> GetReadableMembers(this Type type)
+        {
+            foreach (var field in GetReadableFields(type))
+                yield return SelectableMemberInfo.From(field);
+
+            foreach (var property in GetReadableProperties(type))
+                yield return SelectableMemberInfo.From(property);
+        }
+
+        public static IEnumerable<IMemberInfo> GetWritableMembers(this Type type)
+        {
+            foreach (var field in GetWritableFields(type))
+                yield return SelectableMemberInfo.From(field);
+
+            foreach (var property in GetWritableProperties(type))
+                yield return SelectableMemberInfo.From(property);
+        }
+
+        private static IEnumerable<FieldInfo> GetReadableFields(Type type)
+        {
+            return type.GetFields();
+        }
+
+        private static IEnumerable<FieldInfo> GetWritableFields(Type type)
+        {
+            return type.GetFields();
+        }
+
+        private static IEnumerable<PropertyInfo> GetReadableProperties(Type type)
         {
             return type.GetProperties().Where(p => p.GetMethod != null && p.GetMethod.IsPublic);
         }
 
-        public static IEnumerable<PropertyInfo> GetWritableProperties(this Type type)
+        private static IEnumerable<PropertyInfo> GetWritableProperties(Type type)
         {
             return type.GetProperties().Where(p => p.SetMethod != null && p.SetMethod.IsPublic);
         }
