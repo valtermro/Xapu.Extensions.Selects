@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Linq;
-using Xapu.Extensions.Selects.Tests.FixtureTypes;
 using Xunit;
 
 namespace Xapu.Extensions.Selects.Tests.Base
@@ -22,9 +20,19 @@ namespace Xapu.Extensions.Selects.Tests.Base
             return result;
         }
 
-        internal static void AssignableFrom(object subject, Type type)
+        public static void AssignableFrom(object subject, Type type)
         {
             Assert.True(type.IsAssignableFrom(subject.GetType()));
+        }
+
+        public static void ObjectFieldEqual(object expectedValue, object subject, string fieldName)
+        {
+            var type = subject.GetType();
+            var field = type.GetField(fieldName);
+            var value = field?.GetValue(subject);
+            var casted = Convert.ChangeType(value, expectedValue.GetType());
+
+            Assert.Equal(expectedValue, casted);
         }
     }
 }

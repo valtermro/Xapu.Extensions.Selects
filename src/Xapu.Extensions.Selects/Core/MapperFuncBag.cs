@@ -15,18 +15,28 @@ namespace Xapu.Extensions.Selects.Core
             var key = typeof(IKey<TSource, TResult>);
 
             if (!Instances.ContainsKey(key))
-                Instances[key] = Create<TSource, TResult>();
+                Instances[key] = Create(typeof(TSource), typeof(TResult));
 
             return (Func<TSource, TResult>)Instances[key];
         }
 
-        private static Func<TSource, TResult> Create<TSource, TResult>()
+        public static Delegate Get(Type sourceType, Type resultType)
+        {
+            var key = typeof(IKey<,>).MakeGenericType(sourceType, resultType);
+
+            if (!Instances.ContainsKey(key))
+                Instances[key] = Create(sourceType, resultType);
+            
+            return (Delegate)Instances[key];
+        }
+
+        private static Delegate Create(Type sourceType, Type resultType)
         {
             var config = new MapperExpressionConfig(guardNull: true);
             var builder = new MapperExpressionBuilder(config);
-            var expression = builder.CreateExpression(typeof(TSource), typeof(TResult));
+            var expression = builder.CreateExpression(sourceType, resultType);
 
-            var lambda = (Expression<Func<TSource, TResult>>)expression;
+            var lambda = (LambdaExpression)expression;
             return lambda.Compile();
         }
     }

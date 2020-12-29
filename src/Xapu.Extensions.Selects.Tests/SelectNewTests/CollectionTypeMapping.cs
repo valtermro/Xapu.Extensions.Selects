@@ -9,8 +9,8 @@ namespace Xapu.Extensions.Selects.Tests.SelectNewTests
 {
     public class CollectionTypeMapping
     {
-        private static readonly Type ArrayIteratorT = new int[] { 1 }.Select(p => p).GetType();
-        private static readonly Type ListIteratorT = new List<int>().Select(p => p).GetType();
+        private static readonly Type ArrayIteratorT = EnumerableUtils.GetArrayIteratorType<int>();
+        private static readonly Type ListIteratorT = EnumerableUtils.GetListIteratorType<int>();
         private static readonly Type ArrayIntT = typeof(int[]);
         private static readonly Type ListIntT = typeof(List<int>);
 

@@ -17,7 +17,6 @@ namespace Xapu.Extensions.Selects.Tests.Base
 
         public T Object() => _func();
         public T[] Array() => new T[] { _func() };
-        public List<T> List() => new List<T> { _func() };
         public IQueryable<T> Queryable() => Array().AsQueryable();
     }
 }

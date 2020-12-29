@@ -3,6 +3,7 @@
     public class ObjectType
     {
         public int Id { get; set; }
+        public string Value { get; set; }
         public ObjectType Parent { get; set; }
     }
 
@@ -11,12 +12,17 @@
         public int Id { get; set; }
     }
 
-    public class ShallowObjectView : WithIdView
+    public class WithValueView : WithIdView
     {
-        public WithIdView Parent { get; set; }
+        public string Value { get; set; }
     }
 
-    public class NestedObjectView : WithIdView
+    public class ShallowObjectView : WithValueView
+    {
+        public WithValueView Parent { get; set; }
+    }
+
+    public class NestedObjectView : WithValueView
     {
         public ShallowObjectView Parent { get; set; }
     }

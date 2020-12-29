@@ -37,6 +37,16 @@ namespace Xapu.Extensions.Selects.Core.Base
                    !type.IsGenericTypeDefinition;
         }
 
+        public static IMemberInfo GetReadableMember(this Type type, string name)
+        {
+            return GetReadableMembers(type).FirstOrDefault(p => p.Name == name);
+        }
+
+        public static IMemberInfo GetWritableMember(this Type type, string name)
+        {
+            return GetWritableMembers(type).FirstOrDefault(p => p.Name == name);
+        }
+
         public static IEnumerable<IMemberInfo> GetReadableMembers(this Type type)
         {
             foreach (var field in GetReadableFields(type))
