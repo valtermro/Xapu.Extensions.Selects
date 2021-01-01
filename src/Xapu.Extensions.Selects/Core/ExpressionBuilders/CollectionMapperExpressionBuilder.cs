@@ -3,11 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
-using Xapu.Extensions.Selects.Core.Base;
 
-namespace Xapu.Extensions.Selects.Core.ExpressionBuilders
+namespace Xapu.Extensions.Selects
 {
-    internal class CollectionMapperExpressionBuilder : IMapperExpressionBuilder
+    internal class CollectionMapperExpressionBuilder
     {
         private static readonly MethodInfo SelectMethodInfo = typeof(Enumerable).GetMethods().First(p => p.Name == "Select");
         private static readonly MethodInfo ToListMethodInfo = typeof(Enumerable).GetMethods().First(p => p.Name == "ToList");

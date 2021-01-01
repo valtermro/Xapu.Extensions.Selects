@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Reflection;
 
-namespace Xapu.Extensions.Selects.Core.Selectors
+namespace Xapu.Extensions.Selects
 {
     internal interface IQueryableSelector
     {

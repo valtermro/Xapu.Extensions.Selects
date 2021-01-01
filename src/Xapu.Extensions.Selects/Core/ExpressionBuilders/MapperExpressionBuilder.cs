@@ -1,24 +1,22 @@
 ﻿using System;
 using System.Linq.Expressions;
-using Xapu.Extensions.Selects.Core.Base;
-using Xapu.Extensions.Selects.Exceptions;
 
-namespace Xapu.Extensions.Selects.Core.ExpressionBuilders
+namespace Xapu.Extensions.Selects
 {
     internal class MapperExpressionBuilder : IMapperExpressionBuilderContext
     {
         private readonly MapperExpressionConfig _config;
-        private readonly IMapperExpressionBuilder _objectMapperExpressionBuilder;
-        private readonly IMapperExpressionBuilder _nullableMapperExpressionBuilder;
-        private readonly IMapperExpressionBuilder _basicTypeMapperExpressionBuilder;
-        private readonly IMapperExpressionBuilder _collectionMapperExpressionBuilder;
+        private readonly BasicTypeMapperExpressionBuilder _basicTypeMapperExpressionBuilder;
+        private readonly NullableMapperExpressionBuilder _nullableMapperExpressionBuilder;
+        private readonly ObjectMapperExpressionBuilder _objectMapperExpressionBuilder;
+        private readonly CollectionMapperExpressionBuilder _collectionMapperExpressionBuilder;
 
         public MapperExpressionBuilder(MapperExpressionConfig config)
         {
             _config = config;
-            _objectMapperExpressionBuilder = new ObjectMapperExpressionBuilder(this);
-            _nullableMapperExpressionBuilder = new NullableMapperExpressionBuilder(this);
             _basicTypeMapperExpressionBuilder = new BasicTypeMapperExpressionBuilder();
+            _nullableMapperExpressionBuilder = new NullableMapperExpressionBuilder(this);
+            _objectMapperExpressionBuilder = new ObjectMapperExpressionBuilder(this);
             _collectionMapperExpressionBuilder = new CollectionMapperExpressionBuilder(this);
         }
 

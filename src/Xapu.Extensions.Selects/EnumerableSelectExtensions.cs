@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using Xapu.Extensions.Selects.Core;
 
 namespace Xapu.Extensions.Selects
 {

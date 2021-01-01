@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Concurrent;
-using Xapu.Extensions.Selects.Core.Selectors;
 
-namespace Xapu.Extensions.Selects.Core
+namespace Xapu.Extensions.Selects
 {
     internal static class ObjectSelectorBag
     {

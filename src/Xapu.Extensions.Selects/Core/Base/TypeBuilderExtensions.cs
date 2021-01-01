@@ -2,7 +2,7 @@
 using System.Reflection;
 using System.Reflection.Emit;
 
-namespace Xapu.Extensions.Selects.Core.Base
+namespace Xapu.Extensions.Selects
 {
     internal static class TypeBuilderExtensions
     {

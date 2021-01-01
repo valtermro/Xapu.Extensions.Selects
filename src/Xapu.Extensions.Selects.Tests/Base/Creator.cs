@@ -1,8 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 
-namespace Xapu.Extensions.Selects.Tests.Base
+namespace Xapu.Extensions.Selects.Tests
 {
     public static class Creator
     {

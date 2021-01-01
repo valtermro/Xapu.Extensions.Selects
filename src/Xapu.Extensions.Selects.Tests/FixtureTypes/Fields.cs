@@ -1,4 +1,4 @@
-﻿namespace Xapu.Extensions.Selects.Tests.FixtureTypes
+﻿namespace Xapu.Extensions.Selects.Tests
 {
     public class PublicFields
     {

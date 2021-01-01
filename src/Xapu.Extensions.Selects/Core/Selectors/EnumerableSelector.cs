@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Xapu.Extensions.Selects.Core.Selectors
+namespace Xapu.Extensions.Selects
 {
     internal interface IEnumerableSelector
     {

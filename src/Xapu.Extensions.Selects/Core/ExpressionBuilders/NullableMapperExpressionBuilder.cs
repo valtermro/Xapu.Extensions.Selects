@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Linq.Expressions;
-using Xapu.Extensions.Selects.Core.Base;
-using Xapu.Extensions.Selects.Exceptions;
 
-namespace Xapu.Extensions.Selects.Core.ExpressionBuilders
+namespace Xapu.Extensions.Selects
 {
-    internal class NullableMapperExpressionBuilder : IMapperExpressionBuilder
+    internal class NullableMapperExpressionBuilder
     {
         private readonly IMapperExpressionBuilderContext _ctx;
 

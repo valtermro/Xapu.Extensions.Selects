@@ -6,7 +6,7 @@ using System.Reflection.Emit;
 using System.Security.Cryptography;
 using System.Text;
 
-namespace Xapu.Extensions.Selects.Core.TypeBuilders
+namespace Xapu.Extensions.Selects
 {
     internal static class TypeBuilderEnvironment
     {

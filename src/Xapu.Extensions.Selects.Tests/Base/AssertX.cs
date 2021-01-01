@@ -1,7 +1,7 @@
 ﻿using System;
 using Xunit;
 
-namespace Xapu.Extensions.Selects.Tests.Base
+namespace Xapu.Extensions.Selects.Tests
 {
     internal static class AssertX
     {

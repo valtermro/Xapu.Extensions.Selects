@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
-using Xapu.Extensions.Selects.Core.TypeBuilders;
 
-namespace Xapu.Extensions.Selects.Core
+namespace Xapu.Extensions.Selects
 {
     internal static class WithFieldsTypeBag
     {

@@ -3,9 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using Xapu.Extensions.Selects.Exceptions;
 
-namespace Xapu.Extensions.Selects.Core.Base
+namespace Xapu.Extensions.Selects
 {
     internal static class TypeExtensions
     {
@@ -37,32 +36,32 @@ namespace Xapu.Extensions.Selects.Core.Base
                    !type.IsGenericTypeDefinition;
         }
 
-        public static IMemberInfo GetReadableMember(this Type type, string name)
+        public static ITypeMemberInfo GetReadableMember(this Type type, string name)
         {
             return GetReadableMembers(type).FirstOrDefault(p => p.Name == name);
         }
 
-        public static IMemberInfo GetWritableMember(this Type type, string name)
+        public static ITypeMemberInfo GetWritableMember(this Type type, string name)
         {
             return GetWritableMembers(type).FirstOrDefault(p => p.Name == name);
         }
 
-        public static IEnumerable<IMemberInfo> GetReadableMembers(this Type type)
+        public static IEnumerable<ITypeMemberInfo> GetReadableMembers(this Type type)
         {
             foreach (var field in GetReadableFields(type))
-                yield return SelectableMemberInfo.From(field);
+                yield return DefaultTypeMemberInfo.From(field);
 
             foreach (var property in GetReadableProperties(type))
-                yield return SelectableMemberInfo.From(property);
+                yield return DefaultTypeMemberInfo.From(property);
         }
 
-        public static IEnumerable<IMemberInfo> GetWritableMembers(this Type type)
+        public static IEnumerable<ITypeMemberInfo> GetWritableMembers(this Type type)
         {
             foreach (var field in GetWritableFields(type))
-                yield return SelectableMemberInfo.From(field);
+                yield return DefaultTypeMemberInfo.From(field);
 
             foreach (var property in GetWritableProperties(type))
-                yield return SelectableMemberInfo.From(property);
+                yield return DefaultTypeMemberInfo.From(property);
         }
 
         private static IEnumerable<FieldInfo> GetReadableFields(Type type)

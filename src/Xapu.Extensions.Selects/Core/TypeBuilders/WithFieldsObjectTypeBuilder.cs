@@ -2,9 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection.Emit;
-using Xapu.Extensions.Selects.Core.Base;
 
-namespace Xapu.Extensions.Selects.Core.TypeBuilders
+namespace Xapu.Extensions.Selects
 {
     internal class WithFieldsObjectTypeBuilder
     {
@@ -64,7 +63,7 @@ namespace Xapu.Extensions.Selects.Core.TypeBuilders
             }
         }
 
-        private void CreateField(TypeBuilder typeBuilder, IMemberInfo sourceMember, IEnumerable<string> newTypeFields)
+        private void CreateField(TypeBuilder typeBuilder, ITypeMemberInfo sourceMember, IEnumerable<string> newTypeFields)
         {
             var fieldType = _ctx.CreateType(sourceMember.Type, newTypeFields);
 

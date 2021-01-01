@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Xapu.Extensions.Selects.Core.Base;
-using Xapu.Extensions.Selects.Exceptions;
 
-namespace Xapu.Extensions.Selects.Core.TypeBuilders
+namespace Xapu.Extensions.Selects
 {
     internal class WithFieldsTypeBuilder : IWithFieldsTypeBuilderContext
     {
@@ -31,7 +29,7 @@ namespace Xapu.Extensions.Selects.Core.TypeBuilders
             throw new Exception($"Cannot create WithFieldsType based on {sourceType}");
         }
 
-        public IMemberInfo GetTypeMember(Type sourceType, string fieldName)
+        public ITypeMemberInfo GetTypeMember(Type sourceType, string fieldName)
         {
             var member = sourceType.GetReadableMember(fieldName);
 

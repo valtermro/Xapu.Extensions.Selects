@@ -2,11 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using Xapu.Extensions.Selects.Core.Base;
 
-namespace Xapu.Extensions.Selects.Core.ExpressionBuilders
+namespace Xapu.Extensions.Selects
 {
-    internal class ObjectMapperExpressionBuilder : IMapperExpressionBuilder
+    internal class ObjectMapperExpressionBuilder
     {
         private readonly IMapperExpressionBuilderContext _ctx;
 
@@ -32,7 +31,7 @@ namespace Xapu.Extensions.Selects.Core.ExpressionBuilders
             return Expression.MemberInit(newExpression, memberInitList);
         }
 
-        private IEnumerable<MemberBinding> BuildMemberInitList(Expression sourceLocalName, IEnumerable<IMemberInfo> sourceMembers, IEnumerable<IMemberInfo> resultMembers)
+        private IEnumerable<MemberBinding> BuildMemberInitList(Expression sourceLocalName, IEnumerable<ITypeMemberInfo> sourceMembers, IEnumerable<ITypeMemberInfo> resultMembers)
         {
             var sourceMemberNames = sourceMembers.Select(p => p.Name);
             var resultMemberNames = resultMembers.Select(p => p.Name);
@@ -50,12 +49,12 @@ namespace Xapu.Extensions.Selects.Core.ExpressionBuilders
             }
         }
 
-        private static Expression ResolveSourceMemberExpression(Expression sourceLocalName, IMemberInfo sourceMemberInfo)
+        private static Expression ResolveSourceMemberExpression(Expression sourceLocalName, ITypeMemberInfo sourceMemberInfo)
         {
             return sourceMemberInfo.Kind switch
             {
-                MemberInfoKind.Field => Expression.Field(sourceLocalName, sourceMemberInfo.Name),
-                MemberInfoKind.Property => Expression.Property(sourceLocalName, sourceMemberInfo.Name),
+                TypeMemberInfoKind.Field => Expression.Field(sourceLocalName, sourceMemberInfo.Name),
+                TypeMemberInfoKind.Property => Expression.Property(sourceLocalName, sourceMemberInfo.Name),
                 _ => default
             };
         }

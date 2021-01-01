@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using Xapu.Extensions.Selects.Core.Base;
-using Xapu.Extensions.Selects.Exceptions;
 
-namespace Xapu.Extensions.Selects.Core.TypeBuilders
+namespace Xapu.Extensions.Selects
 {
     internal class WithFieldsCollectionTypeBuilder
     {

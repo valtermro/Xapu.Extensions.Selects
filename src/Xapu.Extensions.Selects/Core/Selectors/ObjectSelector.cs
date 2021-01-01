@@ -1,4 +1,4 @@
-﻿namespace Xapu.Extensions.Selects.Core.Selectors
+﻿namespace Xapu.Extensions.Selects
 {
     internal interface IObjectSelector
     {

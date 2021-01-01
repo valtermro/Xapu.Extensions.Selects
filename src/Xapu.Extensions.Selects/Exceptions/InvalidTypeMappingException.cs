@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Xapu.Extensions.Selects.Exceptions
+namespace Xapu.Extensions.Selects
 {
     [Serializable]
     public class InvalidTypeMappingException : Exception

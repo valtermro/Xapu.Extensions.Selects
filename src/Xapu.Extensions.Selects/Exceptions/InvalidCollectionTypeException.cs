@@ -1,7 +1,6 @@
 ﻿using System;
-using System.Runtime.Serialization;
 
-namespace Xapu.Extensions.Selects.Exceptions
+namespace Xapu.Extensions.Selects
 {
     [Serializable]
     public class InvalidCollectionTypeException : Exception

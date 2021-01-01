@@ -1,6 +1,4 @@
-﻿using Xapu.Extensions.Selects.Core;
-
-namespace Xapu.Extensions.Selects
+﻿namespace Xapu.Extensions.Selects
 {
     public static partial class SelectExtensions
     {

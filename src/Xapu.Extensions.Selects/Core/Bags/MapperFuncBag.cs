@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Concurrent;
 using System.Linq.Expressions;
-using Xapu.Extensions.Selects.Core.ExpressionBuilders;
 
-namespace Xapu.Extensions.Selects.Core
+namespace Xapu.Extensions.Selects
 {
     internal static class MapperFuncBag
     {

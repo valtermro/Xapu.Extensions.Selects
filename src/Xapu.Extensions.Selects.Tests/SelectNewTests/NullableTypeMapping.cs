@@ -1,6 +1,4 @@
 ﻿using System.Linq;
-using Xapu.Extensions.Selects.Tests.Base;
-using Xapu.Extensions.Selects.Tests.FixtureTypes;
 using Xunit;
 
 namespace Xapu.Extensions.Selects.Tests.SelectNewTests

@@ -1,4 +1,4 @@
-﻿namespace Xapu.Extensions.Selects.Core.ExpressionBuilders
+﻿namespace Xapu.Extensions.Selects
 {
     public class MapperExpressionConfig
     {
