@@ -3,9 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using Xapu.Extensions.Selects.Exceptions;
 
-namespace Xapu.Extensions.Selects.Core.Base
+namespace Xapu.Extensions.Selects
 {
     internal static class TypeExtensions
     {
@@ -37,12 +36,50 @@ namespace Xapu.Extensions.Selects.Core.Base
                    !type.IsGenericTypeDefinition;
         }
 
-        public static IEnumerable<PropertyInfo> GetReadableProperties(this Type type)
+        public static ITypeMemberInfo GetReadableMember(this Type type, string name)
+        {
+            return GetReadableMembers(type).FirstOrDefault(p => p.Name == name);
+        }
+
+        public static ITypeMemberInfo GetWritableMember(this Type type, string name)
+        {
+            return GetWritableMembers(type).FirstOrDefault(p => p.Name == name);
+        }
+
+        public static IEnumerable<ITypeMemberInfo> GetReadableMembers(this Type type)
+        {
+            foreach (var field in GetReadableFields(type))
+                yield return DefaultTypeMemberInfo.From(field);
+
+            foreach (var property in GetReadableProperties(type))
+                yield return DefaultTypeMemberInfo.From(property);
+        }
+
+        public static IEnumerable<ITypeMemberInfo> GetWritableMembers(this Type type)
+        {
+            foreach (var field in GetWritableFields(type))
+                yield return DefaultTypeMemberInfo.From(field);
+
+            foreach (var property in GetWritableProperties(type))
+                yield return DefaultTypeMemberInfo.From(property);
+        }
+
+        private static IEnumerable<FieldInfo> GetReadableFields(Type type)
+        {
+            return type.GetFields();
+        }
+
+        private static IEnumerable<FieldInfo> GetWritableFields(Type type)
+        {
+            return type.GetFields();
+        }
+
+        private static IEnumerable<PropertyInfo> GetReadableProperties(Type type)
         {
             return type.GetProperties().Where(p => p.GetMethod != null && p.GetMethod.IsPublic);
         }
 
-        public static IEnumerable<PropertyInfo> GetWritableProperties(this Type type)
+        private static IEnumerable<PropertyInfo> GetWritableProperties(Type type)
         {
             return type.GetProperties().Where(p => p.SetMethod != null && p.SetMethod.IsPublic);
         }

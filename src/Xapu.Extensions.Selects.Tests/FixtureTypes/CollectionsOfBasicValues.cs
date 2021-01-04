@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Xapu.Extensions.Selects.Tests.FixtureTypes
+namespace Xapu.Extensions.Selects.Tests
 {
     public class CollectionsOfBasicValues
     {
@@ -9,6 +9,11 @@ namespace Xapu.Extensions.Selects.Tests.FixtureTypes
         public IList<int> IntIList { get; set; }
         public ICollection<int> IntICollection { get; set; }
         public IEnumerable<int> IntIEnumerable { get; set; }
+    }
+
+    public class CollectionsOfNullableValues
+    {
+        public int?[] IntArray { get; set; }
     }
 
     public class CollectionsToArrays

@@ -1,22 +1,21 @@
 ﻿using System;
 using System.Collections.Concurrent;
-using Xapu.Extensions.Selects.Core.Selectors;
 
-namespace Xapu.Extensions.Selects.Core
+namespace Xapu.Extensions.Selects
 {
     internal static class ObjectSelectorBag
     {
         private static readonly ConcurrentDictionary<Type, IObjectSelector> Instances = new ConcurrentDictionary<Type, IObjectSelector>();
 
-        public static IObjectSelector GetForType(Type type)
+        public static IObjectSelector GetForObjectType(Type type)
         {
             if (!Instances.ContainsKey(type))
-                Instances[type] = CreateForType(type);
+                Instances[type] = CreateForObjectType(type);
 
             return Instances[type];
         }
 
-        private static IObjectSelector CreateForType(Type sourceType)
+        private static IObjectSelector CreateForObjectType(Type sourceType)
         {
             var selectorType = typeof(ObjectSelector<>);
 

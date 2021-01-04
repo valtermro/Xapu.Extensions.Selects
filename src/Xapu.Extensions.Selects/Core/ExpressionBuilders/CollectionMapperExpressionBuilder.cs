@@ -3,11 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
-using Xapu.Extensions.Selects.Core.Base;
 
-namespace Xapu.Extensions.Selects.Core.ExpressionBuilders
+namespace Xapu.Extensions.Selects
 {
-    internal class CollectionMapperExpressionBuilder : IMapperExpressionBuilder
+    internal class CollectionMapperExpressionBuilder
     {
         private static readonly MethodInfo SelectMethodInfo = typeof(Enumerable).GetMethods().First(p => p.Name == "Select");
         private static readonly MethodInfo ToListMethodInfo = typeof(Enumerable).GetMethods().First(p => p.Name == "ToList");
@@ -22,9 +21,6 @@ namespace Xapu.Extensions.Selects.Core.ExpressionBuilders
 
         public Expression Build(Expression sourceLocalName, Type sourceType, Type resultType)
         {
-            // We'll have a single instance of this class during the entire expression building process.
-            // We cannot have instance variables and have to pass state down as arguments.
-
             var resultCollection = BuildResultCollectionExpression(sourceLocalName, sourceType, resultType);
             var castedCollection = ResolveCollectionCasting(resultCollection, resultType);
             

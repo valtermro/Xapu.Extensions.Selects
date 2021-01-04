@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Xapu.Extensions.Selects.Tests.FixtureTypes
+namespace Xapu.Extensions.Selects.Tests
 {
     public enum StubEnum
     {

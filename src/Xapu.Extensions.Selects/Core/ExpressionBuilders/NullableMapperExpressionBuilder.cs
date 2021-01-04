@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Linq.Expressions;
-using Xapu.Extensions.Selects.Core.Base;
-using Xapu.Extensions.Selects.Exceptions;
 
-namespace Xapu.Extensions.Selects.Core.ExpressionBuilders
+namespace Xapu.Extensions.Selects
 {
-    internal class NullableMapperExpressionBuilder : IMapperExpressionBuilder
+    internal class NullableMapperExpressionBuilder
     {
         private readonly IMapperExpressionBuilderContext _ctx;
 
@@ -16,9 +14,6 @@ namespace Xapu.Extensions.Selects.Core.ExpressionBuilders
 
         public Expression Build(Expression sourceLocalName, Type sourceType, Type resultType)
         {
-            // We'll have a single instance of this class during the entire expression building process.
-            // We cannot have instance variables and have to pass state down as arguments.
-
             if (resultType.IsNullable())
                 return BuildToNullableExpression(sourceLocalName, sourceType, resultType);
 

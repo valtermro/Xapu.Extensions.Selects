@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Linq.Expressions;
-using Xapu.Extensions.Selects.Core.Base;
-using Xapu.Extensions.Selects.Exceptions;
 
-namespace Xapu.Extensions.Selects.Core.ExpressionBuilders
+namespace Xapu.Extensions.Selects
 {
-    internal class BasicTypeMapperExpressionBuilder : IMapperExpressionBuilder
+    internal class BasicTypeMapperExpressionBuilder
     {
         public Expression Build(Expression sourceLocalName, Type sourceType, Type resultType)
         {

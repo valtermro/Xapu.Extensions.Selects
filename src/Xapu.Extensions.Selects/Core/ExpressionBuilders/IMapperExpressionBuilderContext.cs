@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq.Expressions;
 
-namespace Xapu.Extensions.Selects.Core.Base
+namespace Xapu.Extensions.Selects
 {
     internal interface IMapperExpressionBuilderContext
     {
