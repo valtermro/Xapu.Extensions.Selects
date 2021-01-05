@@ -46,7 +46,7 @@ namespace Xapu.Extensions.Selects
             if (resultType.IsArray)
                 return BuildArrayExpression(expression, resultType);
             else
-                return BuildDefaultCollectionTypeExpression(expression, resultType);
+                return BuildListExpression(expression, resultType);
         }
 
         private static bool NeedCasting(Type resultType)
@@ -64,30 +64,12 @@ namespace Xapu.Extensions.Selects
             return Expression.Call(toArrayMethod, expression);
         }
 
-        private static Expression BuildDefaultCollectionTypeExpression(MethodCallExpression expression, Type resultType)
-        {
-            var resultList = BuildListExpression(expression, resultType);
-
-            if (IsList(resultType))
-                return resultList;
-
-            // To give the final func the correct signature
-            return Expression.TypeAs(resultList, resultType);
-        }
-
         private static Expression BuildListExpression(MethodCallExpression expression, Type resultType)
         {
             var elementType = resultType.GetCollectionElementType();
             var toListMethod = ToListMethodInfo.MakeGenericMethod(elementType);
 
             return Expression.Call(toListMethod, expression);
-        }
-
-        private static bool IsList(Type resultType)
-        {
-            var elementType = resultType.GetCollectionElementType();
-
-            return resultType == typeof(List<>).MakeGenericType(elementType);
         }
     }
 }
