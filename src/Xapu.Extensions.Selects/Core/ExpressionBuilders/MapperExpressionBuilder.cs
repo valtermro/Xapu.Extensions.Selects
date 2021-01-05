@@ -52,7 +52,17 @@ namespace Xapu.Extensions.Selects
 
             var sourceIsNull = Expression.Equal(sourceLocalName, Expression.Default(sourceType));
             var defaultResultValue = Expression.Default(resultType);
-            return Expression.Condition(sourceIsNull, defaultResultValue, resultValue);
+            var castedResultValue = ResolveResultValueCasting(resultValue, resultType);
+
+            return Expression.Condition(sourceIsNull, defaultResultValue, castedResultValue);
+        }
+
+        private static Expression ResolveResultValueCasting(Expression resultValue, Type resultType)
+        {
+            if (resultValue.Type == resultType)
+                return resultValue;
+            else
+                return Expression.TypeAs(resultValue, resultType);
         }
     }
 }
